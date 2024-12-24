@@ -1,0 +1,20 @@
+<mapper namespace="com.example.mapper.ScoreMapper">
+    <insert id="addScore" parameterType="com.example.pojo.Score">
+        INSERT INTO Score(courseId, courseName, score, studentId)
+        VALUES(#{courseId}, #{courseName}, #{score}, #{studentId})
+    </insert>
+
+    <update id="updateScore" parameterType="com.example.pojo.Score">
+        UPDATE Score
+        SET score=#{score},courseName=#{courseName}
+        WHERE courseId=#{courseId} AND studentId=#{studentId}
+    </update>
+
+    <select id="getScoresByStudentId" resultType="com.example.pojo.Score">
+        SELECT * FROM Score WHERE studentId = #{studentId}
+    </select>
+
+    <delete id="deleteScoresByStudentId" parameterType="int">
+        DELETE FROM Score WHERE studentId = #{studentId}
+    </delete>
+</mapper>
